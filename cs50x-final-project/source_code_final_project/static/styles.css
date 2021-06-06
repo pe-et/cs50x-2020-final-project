@@ -1,0 +1,197 @@
+main
+{
+    /* center content */
+    text-align: center;
+}
+
+.jumbotron
+{
+    /* center content */
+    text-align: center;
+    color: white;
+    background-color: black;
+    max-height: 200px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+body
+{
+    background-color: black;
+    color: white;
+}
+
+.form-control
+{
+    display: inline-block;
+    width: auto;
+    border-radius: 20px;
+}
+
+.container
+{
+    /* center content */
+    text-align: center;
+    margin: auto;
+    margin-top: 0px;
+}
+
+/* Input and results containers */
+.container-left
+{
+    float: right;
+    text-align: center;
+    width: 350px;
+    height: 350px;
+    padding: 20px;
+    border: 1px solid #e6c300;
+    border-radius: 50px;
+    margin: 10px;
+    box-shadow:0px 0px 10px 2px #e6c300;
+}
+
+.container-right
+{
+    float: left;
+    text-align: center;
+    width: 450px;
+    height: 350px;
+    padding: 20px;
+    border: 1px solid #e6c300;
+    border-radius: 50px;
+    margin: 10px;
+    box-shadow:0px 0px 10px 2px #e6c300;
+}
+
+.input-field
+{
+    display: inline-block;
+    padding: 5px;
+}
+
+.res-field
+{
+    padding: 15px;
+}
+
+.input-label
+{
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    padding-left: 15px;
+}
+
+.range-label
+{
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    padding-left: 15px;
+}
+
+.input-range
+{
+    display: block;
+    padding: 5px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+ul
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+li
+{
+    display: inline-block;
+}
+li a
+{
+    font-size: 0.9em;
+    color: #ededed;
+    text-align: center;
+    padding: 0.8em;
+    text-decoration: none;
+}
+li a:hover
+{
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+}
+.nav-tabs
+{
+  border-bottom: 0px solid transparent;
+}
+.nav-tabs .nav-link
+{
+  border: 0px solid transparent;
+}
+.right
+{
+    float: right;
+}
+
+.col-sm-6
+{
+    width: 50%;
+    text-align: center;
+}
+
+.res-text
+{
+    font-size: 21px;
+    font-weight: 500;
+}
+
+.res
+{
+    font-size: 21px;
+    font-weight: 500;
+    color: #ffdd1a;
+}
+
+.add_txt
+{
+    margin: 0px;
+    font-size: 10px;
+
+}
+
+.footer
+{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: inherit;
+    color: inherit;
+    text-align: center;
+    padding: 2px;
+}
+
+a:link, a:visited
+{
+    color: #e6e6e6;
+    text-decoration: none;
+}
+
+a:hover, a:active
+{
+    font-weight: 600;
+}
+
+.cred
+{
+    margin: 2px;
+    font-size: 11px;
+}
+.alert
+{
+    display: none;
+}

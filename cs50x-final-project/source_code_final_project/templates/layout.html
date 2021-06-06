@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="/static/styles.css">
+
+        <title>ICSPCCH</title>
+    </head>
+    <body>
+
+        <div class="jumbotron">
+            <h4>The</h4>
+            <h1>ICSPCCH</h1>
+            <p>(Interactive-Consumption-Saver-Poly-Currency-Converter-Hedger)</p>
+        </div>
+
+        <main class="container-fluid">
+            <div class="alert alert-warning alert-dismissible" id="value_range">
+                <button type="button" class="close" onclick="hide_show('none', '')">&times;</button>
+                <strong id ="value_alert"></strong>
+            </div>
+            {% block main %}{% endblock %}
+        </main>
+
+        <div class="footer justify-content-center">
+            <span class="cred"><a href="https://www.exchangerate-api.com" target="_blank">
+                Fiat exchange rates provided by ExchangeRate-API.com</a> | </span>
+            <span class="cred"><a href="https://www.coingecko.com/en/api" target="_blank">
+                Bitcoin exchange rate provided by CoinGecko API</a></span>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+<body onload="convert()">
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" href="/">ICS</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="/poly_converter">PCCH</a>
+        </li>
+    </ul>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+
+                <div class="container-left">
+                    <div class="form-group">
+                        <div class="row justify-content-center">
+                            <!-- Base currency -->
+                            <div class="input-field">
+                                <label class="input-label" for="base_currency_amount">Amount</label>
+                                <input class="form-control" type="number" autocomplete="off" name="base_currency_amount" id="base_currency_amount"
+                                    value="{{ initial_amount }}" size="10" required oninput="convert({{ initial_amount }})">
+
+                            </div>
+
+                            <div class="input-field">
+                                <label class="input-label" for="base_currency">From</label>
+                                <select class="form-control" name="base_currency" id="base_currency" onchange="convert()">
+                                    {% for i, j in conversion_rates|dictsort %}
+                                        {% if i == default_base_currency %}
+                                            <option id="{{ i }}" value="{{ j }}" selected>{{ i }}</option>
+                                        {% else %}
+                                            <option id="{{ i }}" value="{{ j }}">{{ i }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ratio -->
+                    <div class="form-group">
+                        <div class="row justify-content-center">
+                            <div class="input-range">
+                                <label class="range-label" for="conversion_ratio">Conversion ratio: <span id="quote1_ratio">{{ default_conversion_ratio }}</span>/<span id="quote2_ratio">{{ default_conversion_ratio }}</span></label>
+                                <input class="custom-range" type="range" value="{{ default_conversion_ratio }}" id="conversion_ratio"
+                                    name="conversion_ratio" min="0" max="100" step="1" oninput="convert()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="input label">To</p>
+                    <!-- Quote currency 1 -->
+                    <div class="form-group" id="quote">
+                        <div class="row justify-content-center">
+                            <div class="input-field">
+                                <select class="form-control" name="quote_currency" id="quote_currency" onchange="convert()">
+                                    {% for i, j in conversion_rates|dictsort %}
+                                        {% if i == default_quote_currency1 %}
+                                            <option id="{{ i }}" value="{{ j }}" selected>{{ i }}</option>
+                                        {% else %}
+                                                <option id="{{ i }}" value="{{ j }}">{{ i }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+
+                            <!-- Quote currency 2 -->
+                            <div class="input-field">
+                                <select class="form-control" name="quote_currency2" id="quote_currency2" onchange="convert()">
+                                    {% for i, j in conversion_rates|dictsort %}
+                                        {% if i == default_quote_currency2 %}
+                                            <option id="{{ i }}" value="{{ j }}" selected>{{ i }}</option>
+                                        {% else %}
+                                                <option id="{{ i }}" value="{{ j }}">{{ i }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conversion Results -->
+            <div class="col-sm-6">
+
+                <div class="container-right">
+                    <div class="row justify-content-center"><h3>You get:</h3></div>
+                        <div class="form-group">
+                            <div class="res-field">
+                                <div class="row">
+                                    <div class="col justify-content-center">
+                                        <span class="res" id="quote1_conv"></span>
+                                        <p class="add_txt">Based on <span id="sub_txt_ratio1">{{ default_conversion_ratio }}</span> % of
+                                            <span id="ini1">{{ initial_amount }} {{ default_base_currency }}</span></p>
+                                        <p class="add_txt">Exchange rate: <span id="exchange_rate1"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4>&</h4>
+                        <div class="form-group">
+                            <div class="res-field">
+                                <div class="row">
+                                    <div class="col justify-content-center">
+                                        <span class="res" id="quote2_conv"></span>
+                                        <p class="add_txt">Based on <span id="sub_txt_ratio2">{{ default_conversion_ratio }}</span> % of
+                                            <span id="ini2">{{ initial_amount }} {{ default_base_currency }}</span></p>
+                                        <p class="add_txt">Exchange rate: <span id="exchange_rate2"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <script src="/static/someJS.js"></script>
+</body>
+{% endblock %}

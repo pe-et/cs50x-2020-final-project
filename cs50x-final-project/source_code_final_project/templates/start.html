@@ -1,0 +1,134 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+<body onload="calc_total()">
+
+    <ul class="nav nav-tabs justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link active" href="/">ICS</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/poly_converter">PCCH</a>
+        </li>
+    </ul>
+
+<div class="container">
+<div class="row">
+    <div class="col-sm-6">
+
+    <div class="container-left">
+            <div class="form-group">
+                <div class="row justify-content-center">
+
+                    <!-- Initial payment -->
+                    <div class="input-field">
+                        <label class="input-label" for="initial_payment">Initial payment</label>
+                        <input class="form-control" type="number" autocomplete="off" name="initial_payment" id="initial_payment" size="10"
+                            value="{{ initial_payment }}" required oninput="calc_total({{ initial_payment }})">
+                    </div>
+
+                    <!-- Payment currency -->
+                    <div class="input-field">
+                        <label class="input-label" for="base_currency">Base currency</label>
+                        <select class="form-control" name="base_currency" id="base_currency" onchange="calc_total()">
+                            {% for i, j in conversion_rates|dictsort %}
+                                {% if i == default_base_currency %}
+                                    <option id="{{ i }}" value="{{ j }}" selected>{{ i }}</option>
+                                {% else %}
+                                    <option id="{{ i }}" value="{{ j }}">{{ i }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Savings rate -->
+            <div class="form-group">
+                <div class="row justify-content-center">
+                    <div class="input-range">
+                        <label class="range-label" for="savings_rate">Savings rate: <span id="label_savings">{{ savings_rate }}</span>%</label>
+                        <input class="custom-range" type="range" value="{{ savings_rate }}" id="savings_rate" name="savings_rate" min="0" max="100"
+                            oninput="calc_total()">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Savings asset option -->
+            <div class="form-group">
+                <div class="row justify-content-center">
+                    <div class="input-field">
+                        <label class="input-label" for="savings_asset">Savings asset</label>
+                        <select class="form-control" id="savings_asset" name="savings_asset" onchange="calc_total()">
+                            {% for i, j in conversion_rates|dictsort %}
+                                {% if i == default_savings_asset %}
+                                    <option id="{{ i }}" value="{{ j }}" selected>{{ i }}</option>
+                                {% else %}
+                                    <option id="{{ i }}" value="{{ j }}">{{ i }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <!-- Display Results -->
+        <div class="container-right">
+                <div class="form-group">
+                    <div class="res-field">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <span class="res-text">Initial payment: </span>
+                            </div>
+                            <div class="col-sm-6">
+                                <span class="res" id="ini_pay_res"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="res-field">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <span class="res-text">Total savings: </span>
+                            </div>
+                            <div class="col-sm-6">
+                                <span class="res" id="tot_sav_res">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="res-field">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <span class="res-text">Total payment: </span>
+                            </div>
+                            <div class="col-sm-6">
+                                <span class="res" id="tot_pay_res">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exchange Rate -->
+                <div class="Ex-rates">
+                    <div class="row justify-content-center">
+                        <p>Based on exchange rate:</p>
+                    </div>
+                    <p class="add_txt" id ="savings_ex_rate"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/someJS.js"></script>
+</body>
+
+{% endblock %}
